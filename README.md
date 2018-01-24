@@ -4,6 +4,6 @@ This repository contains a python script to geocode multiple addresses using the
 
 Addresses can be geocoded for free at a rate of 2500 addresses per day, limited by Google. With a Google Developer API key, any number of addresses can be geocoded.
 
-Data input and output is processed from CSV files.
+If the geocode does not succeed as address not found, script does google web search to get spelling suggestions
 
-Please see full blog post at www.shanelynn.ie/
+Data input and output is processed from CSV files.
