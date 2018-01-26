@@ -58,7 +58,8 @@ if __name__ == '__main__':
     if(len(sys.argv) > 1):
         print(search_item(str(sys.argv[1:])))
     else:
-        result = search_item("108 THE HARDWICKE VILLAGE, NORTH BRUNSWICK ST, DUBLIN 7")
+        result = search_item("Quail Rd, Lake Clifton, WA 6215")
+        logger.debug("Hello")
         print(result)
 
     input()
