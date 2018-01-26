@@ -5,7 +5,7 @@ import sys
 #-----------------Search Term using Custom Search API---------------------------
 
 def search_item(search_term,
-                API_KEY= "AIzaSyB59pE6hsc4iep2fNKQuziVgBDB3hq0bjM",
+                API_KEY= "AIzaSyD0H_G1JKCgklUtvDFVcdoMtto3ooyalZ8",
                 CUSTOM_KEY="007585794764902922731:lhcpji7ohgq",
                 google_url = "https://www.googleapis.com/customsearch/v1?"
                 ):
@@ -35,7 +35,8 @@ def search_item(search_term,
             results.get("searchInformation").get("formattedTotalResults")
         output["totalResults"]=\
             results.get("searchInformation").get("totalResults")
-        output["correction"]=results.get("spelling").get("correctedQuery")
+        if results.get("spelling"):
+            output["correction"]=results.get("spelling").get("correctedQuery")
         output[status]="OK"
     return output
 
@@ -48,3 +49,4 @@ if __name__ == '__main__':
         result = search_item("108 THE HARDWICKE VILLAGE, NORTH BRUNSWICK ST, DUBLIN 7")
         print(result)
 
+input()
