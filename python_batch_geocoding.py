@@ -76,11 +76,12 @@ It also returns any spelling suggestion google has for the address
 '''
 #Note that the results are a little different because of personalized and local search results.
 
-def lookup_web(address, output):
+def lookup_web(address, output, logger):
         from websearch import search_item
         web_answer = search_item(address)
-
-        output["correction"] = web_answer.get("correction")
+        logger.debug("Web Look Done")
+        if web_answer.get("correction"):
+                output["correction"] = web_answer.get("correction")
         output['number_of_web_results'] = web_answer.get("formattedTotalResults")
 
         return output
@@ -175,8 +176,9 @@ for address in addresses:
             # Note that the results might be empty / non-ok - log this
             if geocode_result['status'] != 'OK':
                 logger.warning("Error geocoding {}: {}".format(address, geocode_result['status']))
-                logger.info("Looking up google web custom search for full address")
-                geocode_result= lookup_web(address, geocode_result)
+                logger.info("Looking up google web custom search for address: {}"\
+                            .format(address))
+                geocode_result= lookup_web(address, geocode_result, logger)
                 logger.debug("{} results found".format(geocode_result.get("number_of_web_results")))
             else:
                 logger.debug("Geocoded: {}: {}".format(address, geocode_result['status']))
